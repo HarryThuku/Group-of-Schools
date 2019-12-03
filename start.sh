@@ -1,0 +1,15 @@
+export DB_PASS=''
+export USER=$USER
+export SECRET_KEY='ITWORKS2014'
+export MAIL_USERNAME=''
+export MAIL_DEFAULT_SENDER=''
+export MAIL_PASSWORD=''
+export APP_URL='http://127.0.0.1:5000/'
+export INSTITUTION_NAME=''
+export INSTITUTION_INITIALS='NSS'
+export STATE_OR_COUNTY=''
+export COUNTRY=''
+export PRIMARY_PHONE=''
+export SECONDARY_PHONE=''
+export SQLALCHEMY_DATABASE_URI=''
+python manage.py runserver # -p 8080

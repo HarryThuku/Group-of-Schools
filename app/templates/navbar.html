@@ -1,0 +1,31 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    {% if current_user.is_authenticated %}
+        {% if context.appData.institution_initials %}
+            <a href="{{url_for('main.index')}}" class="navbar-brand">{{context.appData.institution_initials}}</a>
+        {% else %}
+            <a href="{{url_for('main.index')}}" class="navbar-brand">Untitled Application</a>
+        {% endif %}
+    {% else %}
+        {% if context.appData.institution_name %}
+            <a class="navbar-brand">{{context.appData.institution_name}}</a>
+        {% else %}
+            <a class="navbar-brand">Untitled Application</a>
+        {% endif %}
+    {% endif %}
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        {% if current_user.is_authenticated %}
+        <div class="navbar-nav">
+            <a class="nav-item nav-link" href="{{url_for('main.profile',id=current_user.id)}}">My Profile</a>
+            <a class="nav-item nav-link" href="{{url_for('auth.logout')}}">Sign out</a>
+        </div>
+        {% else %}
+        <div class=" navbar-nav">
+            <a class="nav-item nav-link" href="{{url_for('auth.login')}}" class="page-scroll">Sign In</a>
+            <a class="nav-item nav-link" href="{{url_for('auth.register')}}" class="page-scroll">Sign Up</a>
+        </div>
+        {%endif%}
+    </div>
+</nav>

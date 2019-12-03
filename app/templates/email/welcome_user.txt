@@ -1,0 +1,8 @@
+Hello {{user.firstName}},
+Welcome to {{appData.institution_name}}. By receiving 
+this email, it means you are registered to our system. 
+You will reveive updates related to your dashboard, so 
+kindly check your Emails often. 
+You are Welcome.
+
+Reguards, {{appData.institution_name}} Learning Community.
