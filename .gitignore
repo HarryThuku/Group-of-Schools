@@ -3,8 +3,8 @@ __pycache__/
 */__pycache__
 virtual/
 .vscode/
+.idea/
 start.sh
-
 *.py[cod]
 *$py.class
 
