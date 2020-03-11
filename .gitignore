@@ -1,8 +1,9 @@
-<<<<<<< HEAD
-/virtual
-=======
 # Byte-compiled / optimized / DLL files
 __pycache__/
+virtual/
+
+start.sh
+
 *.py[cod]
 *$py.class
 
@@ -105,4 +106,3 @@ venv.bak/
 
 # mypy
 .mypy_cache/
->>>>>>> 12546f1c7864b5a421c87e55efa8574307f25c1b

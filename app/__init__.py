@@ -7,6 +7,7 @@ from config import config_options
 from flask_mail import Mail
 from flask_simplemde import SimpleMDE
 from logging import FileHandler, WARNING
+# from flask_ngrok import run_with_ngrok
 
 
 login_manager = LoginManager()
@@ -24,6 +25,7 @@ def create_app(config_name):
     '''
     '''
     app = Flask(__name__)
+    
 
     # Creating the app configurations
     app.config.from_object(config_options[config_name])
@@ -54,4 +56,4 @@ def create_app(config_name):
 
         app.logger.addHandler(error_logs_file)
 
-    return app
+    return app  

@@ -12,10 +12,10 @@ class Roles(db.Model):
     __tablename__ = 'roles'
     id = db.Column(db.Integer, primary_key = True)
     role_detail = db.Column(db.String(100), unique = True, index = True)
-    role_description = db.Column(db.String(300))
+    role_description = db.Column(db.Text, nullable = False)
     activate = db.Column(db.Boolean)
     activation_status = db.Column(db.String(300))
-    time_stamp = db.Column(db.String())
+    time_stamp = db.Column(db.DateTime, nullable = False, default = datetime.utcnow)
 
     def __init__(self, role_data, role_desc, activation):
         '''
@@ -116,7 +116,7 @@ class SchoolCategory(db.Model):
     category_desc = db.Column(db.String(300))
     valid = db.Column(db.Boolean)
     validation_status = db.Column(db.String(200))
-    time_stamp = db.Column(db.String(50))
+    time_stamp = db.Column(db.DateTime, nullable = False, default = datetime.utcnow)
     schools_cat_rship = db.relationship('Schools', backref = 'school_category', lazy = "dynamic")
 
     def __init__(self, cat_data, cat_initials, cat_desc, validated):
@@ -206,7 +206,7 @@ class AmenityCategories(db.Model):
         self.validated = valid
         self.validation_status = self.statusGenerator(category_data, valid)
         self.time_stamp = datetime.utcnow().strftime("%D - %H:%M:%S")
-    
+
     @classmethod
     def create_amenity_cat(cls, instance):
         '''
@@ -237,6 +237,19 @@ class SchoolAmenities(db.Model):
     school_id = db.Column(db.Integer, db.ForeignKey('schools.id'))
     amenity_id = db.Column(db.Integer, db.ForeignKey('amenities.id'))
 
+    def init(self, s_id, a_id):
+        '''
+        '''
+        self.school_id = s_id
+        self.amenity_id = a_id
+    
+    @classmethod
+    def create_Sch_Amenity(cls, instance):
+        '''
+        '''
+        db.session.add(instance)
+        db.session.commit()
+        return True
 
 
 class Schools(db.Model):
@@ -252,7 +265,7 @@ class Schools(db.Model):
     location = db.Column(db.String(200))
     time_stamp = db.Column(db.String(50))
     amenity = db.relationship('SchoolAmenities', backref = 'school', lazy = "dynamic")
-    
+
     def __init__(self, name, initials, motto, category, admitted_gender, location):
         '''
         '''
@@ -263,7 +276,7 @@ class Schools(db.Model):
         self.gender_id = int(admitted_gender)
         self.location = str(location)
         self.time_stamp = datetime.utcnow().strptime()
-    
+
     @classmethod
     def create_school(cls, instance):
         '''

@@ -5,7 +5,7 @@ import os
 # from .forms import [form_name]
 from ..models import Teachers
 from .. import db, photos
-from flask_login import login_required, current_user
+from flask_login import login_required, current_user, logout_user, fresh_login_required
 import markdown2
 
 # General Application Data
